@@ -1,0 +1,66 @@
+<p id="notice"><%= notice %></p>
+<% if current_user %>
+
+  <div class="row">
+
+
+    
+    <div class="col s12 m6 l6 ">
+      <h1>To do</h1>
+      <% myTodos.each do |todo| %>
+          <div class="col s1 m6 16 ">
+            <div class="card red darken-2">
+              <div class="card-content white-text red lighten-1">
+                <span class="card-title"><%= todo.title %></span>
+                <p><%= todo.description %></p>
+                ----------------------------<br>
+                <%= todo.done ? "Done" : "To do for the: #{todo.date}" %>
+              </div>
+              <div class="card-action">
+                <%= link_to 'Edit', edit_todo_path(todo) %>
+                <%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  
+  
+    <div class="col s12 m6 l6">
+      <h1>Done</h1>
+      <% myDones.each do |d| %>
+          <div class="col s12 m6 l6">
+            <div class="card green darken-1">
+              <div class="card-content green lighten-2 white-text">
+                <span class="card-title"><%= d.title %></span>
+                <p><%= d.description %></p>
+                ----------------------------<br>
+                <%= d.done ? "Done the #{d.date}" : "To do" %>
+              </div>
+              <div class="card-action">
+                <%= link_to 'Edit', edit_todo_path(d) %>
+                <%= link_to 'Destroy', d, method: :delete, data: { confirm: 'Are you sure?' } %>
+              </div>
+            </div>
+          </div>
+          
+          <% end %>
+          </div>
+    </div>
+
+  </div>
+<% else %>
+    <div class="center">
+      <p>To Do Do , vous permet d'enregistrer vos tâches qui sont à faire avant une date donnée, <br>vous pouvez ainsi informer si la tâche est terminée ou pas... <br><br> Pour commencer inscrivez-vous maintenant et commencez à planifier vos tâches.<br> Vous avez déjà un compte c'est le moment de se connecter et de vérifier que vous avez respecté votre planning. </p>
+    <%= link_to(new_user_registration_path) do %>
+    <span class="btn btn-primary">
+      S'incrire !
+    </span>
+    <% end %> 
+    <%= link_to(user_session_path) do %>
+    <span class="btn btn-primary">
+      Se connecter
+    </span>
+    </div><% end %>
+<% end %>
+

@@ -1,0 +1,28 @@
+
+<nav>
+    <div class="nav-wrapper cyan darken-1">
+      <li class="brand-logo"><%= link_to 'TO DO DO DO', todos_path(@todo) %></li>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <% if current_user %>
+          <li><%= link_to 'Account', edit_user_registration_path(@user) %></li>
+          <li><%= link_to 'New Todo', new_todo_path %></li>
+          <li><%= link_to 'Disconnect', destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to 'Show Todo', todos_path(@todo) %></li>
+         <% else %>
+          <li><%= link_to 'Signup', new_user_registration_path %></li>
+        <% end %>
+      </ul>
+      </div>
+      <ul class="side-nav" id="mobile-demo">
+        <% if current_user %>
+          <li><%= link_to 'Account', edit_user_registration_path(@user) %></li>
+          <li><%= link_to 'New Todo', new_todo_path %></li>
+          <li><%= link_to 'Disconnect', destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to 'Show Todo', todos_path(@todo) %></li>
+         <% else %>
+          <li><%= link_to 'Signup', new_user_registration_path %></li>
+        <% end %>
+      </ul>
+    
+</nav>
